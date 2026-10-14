@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Danish West Indies Newspapers – Search</title>
+<link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+<header>
+  <h1>Danish West Indies Newspapers</h1>
+  <p class="sub">Search <span id="corpus-size">…</span> of <em>Dansk Vestindisk Regierings Avis</em> and <em>St. Croix Avis</em>
+    (Royal Danish Library, Mediestream). Type a word, press <b>Search</b>, and check what comes back.</p>
+</header>
+
+<main>
+  <form id="search-form" autocomplete="off">
+    <div class="row">
+      <input id="q" type="search" placeholder="e.g.  negro woman,  negerinde,  free coloured" aria-label="Search words">
+      <button type="submit" class="primary">Search</button>
+    </div>
+    <div class="row examples">
+      Try:
+      <button type="button" class="chip" data-q="negro woman">negro woman</button>
+      <button type="button" class="chip" data-q="negerinde">negerinde</button>
+      <button type="button" class="chip" data-q="free coloured">free coloured</button>
+      <button type="button" class="chip" data-q="washer">washer</button>
+      <button type="button" class="chip" data-q="mulatinde">mulatinde</button>
+      <button type="button" class="chip lexicon" id="lexicon-btn" title="All search words for women used in the project">All words for women</button>
+    </div>
+    <details class="filters" open>
+      <summary>Filters</summary>
+      <div class="grid">
+        <label>Period
+          <select id="period">
+            <option value="">All years</option>
+            <option value="S1">Before emancipation (1835–1847)</option>
+            <option value="S2">After emancipation (1849–1861)</option>
+          </select>
+        </label>
+        <label>From year <input id="from" type="number" min="1800" max="1900" placeholder="1816"></label>
+        <label>To year <input id="to" type="number" min="1800" max="1900" placeholder="1861"></label>
+        <label>Newspaper <select id="paper"><option value="">Both newspapers</option></select></label>
+        <label>Sort
+          <select id="sort">
+            <option value="oldest" selected>Oldest first</option>
+            <option value="newest">Newest first</option>
+            <option value="score">Best match first</option>
+          </select>
+        </label>
+        <label class="check"><input id="exact" type="checkbox"> Exact spelling only
+          <span class="hint">(otherwise misread and variant spellings are included)</span></label>
+      </div>
+    </details>
+  </form>
+
+  <section id="status" aria-live="polite"></section>
+
+  <section id="summary" hidden>
+    <div id="summary-text"></div>
+    <div id="years" class="years"></div>
+    <details id="variants-box">
+      <summary>Spellings included in this search</summary>
+      <p class="hint">Old print is often misread by the computer (for example <i>Womau</i> for <i>Woman</i>),
+        so the search also looks for spellings that differ by a letter or two. Untick any that are wrong words,
+        then press <b>Search again</b>.</p>
+      <div id="variants"></div>
+      <button type="button" id="rerun">Search again</button>
+    </details>
+    <div class="actions">
+      <button type="button" id="download-results">Download this list (spreadsheet + pictures)</button>
+      <button type="button" id="copy-link">Copy link to this search</button>
+    </div>
+  </section>
+
+  <section id="results"></section>
+  <div class="more"><button type="button" id="more" hidden>Show more results</button></div>
+
+  <aside id="review-panel">
+    <b>Your checks:</b> <span id="review-count">No passages checked yet.</span>
+    <label>Your name <input id="reviewer" type="text" placeholder="so we know who checked"></label>
+    <button type="button" id="download-reviews" class="primary">Download my checks (spreadsheet)</button>
+    <button type="button" id="clear-reviews" class="danger">Delete</button>
+    <span class="hint">Saved in this browser only — download the file and email it to the project.</span>
+  </aside>
+
+  <details class="help">
+    <summary>How to use this page</summary>
+    <ol>
+      <li>Type one or more words and press <b>Search</b>. Several words must appear close together and in that order
+        (<i>negro woman</i> finds "a Negro Woman named Jane").</li>
+      <li>Each result shows the date, the newspaper, the page, the text read by the computer, and — where available — a picture of
+        the printed notice with the words marked in red.</li>
+      <li>The computer's reading of the old print contains errors. Always trust the picture over the text.
+        <b>Open the page at the Royal Library</b> shows the whole original page.
+        If the text is wrong, click <b>Correct OCR</b>, type what the print actually says, and save.
+        Your correction is stored in this browser and included when you download; it does not change the search.</li>
+      <li>For each result, click <b>Yes</b> if it describes a woman, <b>No</b> if it does not, or <b>Unsure</b>; add a note if you like.</li>
+      <li><b>Download this list</b> saves a spreadsheet of every hit, including the computer’s OCR text. Where a picture of the notice exists, the download is a zip folder with those pictures as well.</li>
+      <li>Results are listed in date order (oldest first). Use <b>Sort</b> to switch to newest first, or to the computer's best-match order.</li>
+      <li>Put <b>=</b> before a word to turn off variant spellings for that word only (<i>=woman</i> will not also find <i>Roman</i>).</li>
+    </ol>
+    <p>Pictures are shown for passages found by the project's list of words for women; for other searches, use the Royal Library link.</p>
+  </details>
+</main>
+
+<footer>
+  Newspaper scans and text: Det Kgl. Bibliotek, Mediestream (public domain). Text recognition errors are left as printed by the library's OCR.
+  <span id="built"></span>
+  Download pack v4.
+</footer>
+
+<script src="app.js?v=4"></script>
+</body>
+</html>
